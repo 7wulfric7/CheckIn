@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 import FirebaseStorage
 import FirebaseAuth
 
+typealias FeedItemsCompletion = ((_ items: [Feed]?, _ error: Error?, _ lastDocument: DocumentSnapshot?) -> Void)
 
 class DataStore {
     static let shared = DataStore()
@@ -89,6 +90,61 @@ class DataStore {
                     return
                 }
                 completion(imageUrl, nil)
+            }
+        }
+    }
+    
+    func getAllUsers(completion: @escaping (_ user: [User]?, _ error: Error?) -> Void) {
+        let usersRef = database.collection("users")
+        usersRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            if let snapshot = snapshot {
+                do {
+                    let users = try snapshot.documents.compactMap({ try $0.data(as: User.self) })
+                    completion(users, nil)
+                } catch (let error) {
+                    completion(nil, error)
+                }
+            }
+        }
+    }
+    
+    func createFeedItem(item: Feed, completion: @escaping (_ item: Feed?,_ error: Error?) -> Void) {
+        var newItem = item
+        let feedRef = database.collection("feed").document()
+        newItem.id = feedRef.documentID
+        do {
+           try feedRef.setData(from: newItem) { error in
+                completion(newItem, error)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func fetchFeedItems(pageSize: Int, lastDocument: DocumentSnapshot?, completion: @escaping FeedItemsCompletion) {
+        let feedRef = database.collection("feed")
+        var feedQuery: Query = feedRef
+        if let lastDocument = lastDocument {
+            feedQuery = feedRef.order(by: "createdAt", descending: true).start(afterDocument: lastDocument).limit(to: pageSize)
+        } else {
+            feedQuery = feedRef.order(by: "createdAt", descending: true).limit(to: pageSize)
+        }
+        feedQuery.getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(nil, error, nil)
+                return
+            }
+            if let snapshot = snapshot {
+                do {
+                    let feeds = try snapshot.documents.compactMap({ try $0.data(as: Feed.self) })
+                    completion(feeds, nil, snapshot.documents.last)
+                } catch (let error) {
+                    completion(nil, error, nil)
+                }
             }
         }
     }

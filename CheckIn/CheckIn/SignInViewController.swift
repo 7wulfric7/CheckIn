@@ -62,7 +62,7 @@ class SignInViewController: UIViewController {
             showErrorWith(title: "Error", msg: "Please enter your password")
             return
         }
-        guard password.count >= 5 else {
+        guard password.count >= 6 else {
             showErrorWith(title: "Error", msg: "Password must contain at least 6 characters")
             return
         }
@@ -71,13 +71,12 @@ class SignInViewController: UIViewController {
             SVProgressHUD.dismiss()
             if let error = error {
                 let specificError = error as NSError
-               
                 if specificError.code == AuthErrorCode.invalidEmail.rawValue && specificError.code == AuthErrorCode.wrongPassword.rawValue {
                     self.showErrorWith(title: "Error", msg: "Incorect email or password")
                     return
                 }
                 if specificError.code == AuthErrorCode.userDisabled.rawValue {
-                    self.showErrorWith(title: "Error", msg: "You account was disabled")
+                    self.showErrorWith(title: "Error", msg: "Your account was disabled")
                     return
                 }
                 self.showErrorWith(title: "Error", msg: error.localizedDescription)

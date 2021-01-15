@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,11 @@
 		2254E65325AFAF8C002B23EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2254E65225AFAF8C002B23EE /* GoogleService-Info.plist */; };
 		226DFCF825AFD92C0064A527 /* MyCheckInsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226DFCF625AFD92C0064A527 /* MyCheckInsCollectionViewCell.swift */; };
 		226DFCF925AFD92C0064A527 /* MyCheckInsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226DFCF725AFD92C0064A527 /* MyCheckInsCollectionViewCell.xib */; };
+		22BE66B925B1A69E003BB790 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BE66B825B1A69E003BB790 /* Feed.swift */; };
+		22BE66BC25B1AF19003BB790 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BE66BB25B1AF19003BB790 /* Date.swift */; };
+		22BE66BF25B1B57B003BB790 /* LoadingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BE66BE25B1B57B003BB790 /* LoadingCollectionViewCell.swift */; };
+		22BE66C325B1B785003BB790 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 22BE66C225B1B785003BB790 /* SnapKit */; };
+		22BE66CA25B1C658003BB790 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BE66C925B1C658003BB790 /* LocationViewController.swift */; };
 		22F688B225B05159004CC4C2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F688B125B05159004CC4C2 /* HomeViewController.swift */; };
 		22F688B525B051A9004CC4C2 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F688B425B051A9004CC4C2 /* WelcomeViewController.swift */; };
 		22F688B825B051D7004CC4C2 /* SetupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F688B725B051D7004CC4C2 /* SetupProfileViewController.swift */; };
@@ -42,6 +47,10 @@
 		226DFCF625AFD92C0064A527 /* MyCheckInsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCheckInsCollectionViewCell.swift; sourceTree = "<group>"; };
 		226DFCF725AFD92C0064A527 /* MyCheckInsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCheckInsCollectionViewCell.xib; sourceTree = "<group>"; };
 		22A4140725B11E7100371166 /* CheckIn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CheckIn.entitlements; sourceTree = "<group>"; };
+		22BE66B825B1A69E003BB790 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		22BE66BB25B1AF19003BB790 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		22BE66BE25B1B57B003BB790 /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
+		22BE66C925B1C658003BB790 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		22F688B125B05159004CC4C2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		22F688B425B051A9004CC4C2 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		22F688B725B051D7004CC4C2 /* SetupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupProfileViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +70,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A0FDEEEA15AD11EE07D8F1D /* Pods_CheckIn.framework in Frameworks */,
+				22BE66C325B1B785003BB790 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +115,7 @@
 				22F688B425B051A9004CC4C2 /* WelcomeViewController.swift */,
 				22F688B725B051D7004CC4C2 /* SetupProfileViewController.swift */,
 				22F688BB25B06279004CC4C2 /* SignInViewController.swift */,
+				22BE66C925B1C658003BB790 /* LocationViewController.swift */,
 			);
 			path = CheckIn;
 			sourceTree = "<group>";
@@ -114,6 +125,7 @@
 			children = (
 				226DFCF625AFD92C0064A527 /* MyCheckInsCollectionViewCell.swift */,
 				226DFCF725AFD92C0064A527 /* MyCheckInsCollectionViewCell.xib */,
+				22BE66BE25B1B57B003BB790 /* LoadingCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -132,6 +144,7 @@
 			children = (
 				22F688C725B08F31004CC4C2 /* User.swift */,
 				22F688CB25B08F7F004CC4C2 /* DataStore.swift */,
+				22BE66B825B1A69E003BB790 /* Feed.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -140,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				22F688CF25B08FD5004CC4C2 /* Extension.swift */,
+				22BE66BB25B1AF19003BB790 /* Date.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -180,6 +194,9 @@
 			dependencies = (
 			);
 			name = CheckIn;
+			packageProductDependencies = (
+				22BE66C225B1B785003BB790 /* SnapKit */,
+			);
 			productName = CheckIn;
 			productReference = 2254E61E25AFA97F002B23EE /* CheckIn.app */;
 			productType = "com.apple.product-type.application";
@@ -207,6 +224,9 @@
 				Base,
 			);
 			mainGroup = 2254E61525AFA97F002B23EE;
+			packageReferences = (
+				22BE66C125B1B785003BB790 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 2254E61F25AFA97F002B23EE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -296,8 +316,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				22F688B225B05159004CC4C2 /* HomeViewController.swift in Sources */,
+				22BE66BC25B1AF19003BB790 /* Date.swift in Sources */,
 				22F688CC25B08F7F004CC4C2 /* DataStore.swift in Sources */,
 				2254E62625AFA97F002B23EE /* ViewController.swift in Sources */,
+				22BE66CA25B1C658003BB790 /* LocationViewController.swift in Sources */,
+				22BE66B925B1A69E003BB790 /* Feed.swift in Sources */,
 				22F688C025B08EB4004CC4C2 /* EmailValidity.swift in Sources */,
 				2254E62225AFA97F002B23EE /* AppDelegate.swift in Sources */,
 				22F688B525B051A9004CC4C2 /* WelcomeViewController.swift in Sources */,
@@ -308,6 +331,7 @@
 				2254E62425AFA97F002B23EE /* SceneDelegate.swift in Sources */,
 				22F688C425B08EF1004CC4C2 /* UIColor.swift in Sources */,
 				22F688C825B08F31004CC4C2 /* User.swift in Sources */,
+				22BE66BF25B1B57B003BB790 /* LoadingCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,7 +408,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -439,7 +463,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -460,6 +484,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4UUZZ94GNC;
 				INFOPLIST_FILE = CheckIn/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -483,6 +508,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4UUZZ94GNC;
 				INFOPLIST_FILE = CheckIn/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -517,6 +543,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		22BE66C125B1B785003BB790 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		22BE66C225B1B785003BB790 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22BE66C125B1B785003BB790 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2254E61625AFA97F002B23EE /* Project object */;
 }

@@ -278,7 +278,6 @@ class SetupProfileViewController: UIViewController, UIImagePickerControllerDeleg
         present(imagePicker, animated: true, completion: nil)
     }
 
-    
     func galleryDidTapToClose(gallery: SwiftPhotoGallery) {
         gallery.dismiss(animated: true, completion: nil)
     }
@@ -290,5 +289,12 @@ class SetupProfileViewController: UIViewController, UIImagePickerControllerDeleg
     func imageInGallery(gallery: SwiftPhotoGallery, forIndex: Int) -> UIImage? {
         let image = galleryImages[forIndex]
         return image
+    }
+}
+
+extension SetupProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

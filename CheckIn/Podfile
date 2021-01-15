@@ -17,5 +17,6 @@ pod 'GoogleSignIn'
 pod 'Kingfisher'
 pod 'SVProgressHUD'
 pod 'SwiftPhotoGallery'
+pod 'CodableFirebase'
 
 end
