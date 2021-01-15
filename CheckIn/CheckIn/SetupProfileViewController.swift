@@ -44,6 +44,7 @@ class SetupProfileViewController: UIViewController, UIImagePickerControllerDeleg
         imageHolderView.layer.masksToBounds = true
         onSaveAccount.layer.cornerRadius = 6
     }
+    
     func setAddPhotoButton() {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 14))
         button.setTitle("Add photo", for: .normal)
@@ -57,6 +58,7 @@ class SetupProfileViewController: UIViewController, UIImagePickerControllerDeleg
     @objc func onAddPhoto() {
         openImagePicker()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setKeyboardObservers()

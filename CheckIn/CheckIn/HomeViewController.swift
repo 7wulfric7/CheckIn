@@ -14,15 +14,30 @@ import SVProgressHUD
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var onSignOut: UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setTitle()
+        setLogOutButton()
     }
     
-
-    @IBAction func onSignOut(_ sender: UIButton) {
+    func setTitle() {
+        title = "Home Screen"
+        let titleAttributes = [NSAttributedString.Key.foregroundColor:UIColor.darkGray, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13, weight: .medium)]
+        navigationController?.navigationBar.titleTextAttributes = titleAttributes as [NSAttributedString.Key : Any]
+    }
+    
+    func setLogOutButton() {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 14))
+        button.setTitle("LogOut", for: .normal)
+        let titleColor = UIColor.systemBlue
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .light)
+        button.setTitleColor(titleColor, for: .normal)
+        button.addTarget(self, action: #selector(onLogOut), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+        }
+    
+    @objc func onLogOut() {
         GIDSignIn.sharedInstance()?.signOut()
         let firebaseAuth = Auth.auth()
         do {
@@ -32,5 +47,7 @@ class HomeViewController: UIViewController {
         }
         performSegue(withIdentifier: "WelcomeViewController", sender: nil)
     }
+    
+   
     
 }

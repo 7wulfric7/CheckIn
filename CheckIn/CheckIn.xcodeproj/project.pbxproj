@@ -41,6 +41,7 @@
 		2254E65225AFAF8C002B23EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		226DFCF625AFD92C0064A527 /* MyCheckInsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCheckInsCollectionViewCell.swift; sourceTree = "<group>"; };
 		226DFCF725AFD92C0064A527 /* MyCheckInsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCheckInsCollectionViewCell.xib; sourceTree = "<group>"; };
+		22A4140725B11E7100371166 /* CheckIn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CheckIn.entitlements; sourceTree = "<group>"; };
 		22F688B125B05159004CC4C2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		22F688B425B051A9004CC4C2 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		22F688B725B051D7004CC4C2 /* SetupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupProfileViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +88,7 @@
 		2254E62025AFA97F002B23EE /* CheckIn */ = {
 			isa = PBXGroup;
 			children = (
+				22A4140725B11E7100371166 /* CheckIn.entitlements */,
 				22F688CE25B08FC2004CC4C2 /* Extension */,
 				22F688C625B08F24004CC4C2 /* Model */,
 				22F688BE25B08EA0004CC4C2 /* Helpers */,
@@ -453,6 +455,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CheckIn/CheckIn.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4UUZZ94GNC;
@@ -475,6 +478,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CheckIn/CheckIn.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4UUZZ94GNC;
