@@ -115,6 +115,14 @@ class SetupProfileViewController: UIViewController, UIImagePickerControllerDeleg
         setAddPhotoButton()
     }
     
+    func createLocalUser() -> User? {
+        guard let user = FirebaseAuth.Auth.auth().currentUser else {
+            return nil
+        }
+        let localUser = User(id: user.uid)
+        return localUser
+    }
+    
     @IBAction func onSaveAccount(_ sender: UIButton) {
         guard let email = emailTextField.text, email != "" else {
             showErrorWith(title: "Error", msg: "Please enter your e-mail")

@@ -86,7 +86,7 @@ class SignInViewController: UIViewController {
                 self.getLocalUserData(uid: authResult.user.uid)
             }
         }
-        performSegue(withIdentifier: "HomeViewController", sender: nil)
+        
     }
     
     func getLocalUserData(uid: String) {
@@ -99,6 +99,7 @@ class SignInViewController: UIViewController {
             }
             if let user = user {
                 DataStore.shared.localUser = user
+                self.performSegue(withIdentifier: "HomeViewController", sender: nil)
                 return
             }
         }

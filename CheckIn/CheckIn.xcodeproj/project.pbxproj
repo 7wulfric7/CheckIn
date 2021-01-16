@@ -13,14 +13,13 @@
 		2254E62925AFA97F002B23EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2254E62725AFA97F002B23EE /* Main.storyboard */; };
 		2254E62B25AFA980002B23EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2254E62A25AFA980002B23EE /* Assets.xcassets */; };
 		2254E62E25AFA980002B23EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2254E62C25AFA980002B23EE /* LaunchScreen.storyboard */; };
-		2254E65325AFAF8C002B23EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2254E65225AFAF8C002B23EE /* GoogleService-Info.plist */; };
 		226DFCF825AFD92C0064A527 /* MyCheckInsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226DFCF625AFD92C0064A527 /* MyCheckInsCollectionViewCell.swift */; };
 		226DFCF925AFD92C0064A527 /* MyCheckInsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226DFCF725AFD92C0064A527 /* MyCheckInsCollectionViewCell.xib */; };
 		22BE66B925B1A69E003BB790 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BE66B825B1A69E003BB790 /* Feed.swift */; };
 		22BE66BC25B1AF19003BB790 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BE66BB25B1AF19003BB790 /* Date.swift */; };
-		22BE66BF25B1B57B003BB790 /* LoadingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BE66BE25B1B57B003BB790 /* LoadingCollectionViewCell.swift */; };
 		22BE66C325B1B785003BB790 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 22BE66C225B1B785003BB790 /* SnapKit */; };
 		22BE66CA25B1C658003BB790 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BE66C925B1C658003BB790 /* LocationViewController.swift */; };
+		22D2176D25B3A75A00362856 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22D2176C25B3A75900362856 /* GoogleService-Info.plist */; };
 		22F688B225B05159004CC4C2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F688B125B05159004CC4C2 /* HomeViewController.swift */; };
 		22F688B525B051A9004CC4C2 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F688B425B051A9004CC4C2 /* WelcomeViewController.swift */; };
 		22F688B825B051D7004CC4C2 /* SetupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F688B725B051D7004CC4C2 /* SetupProfileViewController.swift */; };
@@ -43,14 +42,13 @@
 		2254E62A25AFA980002B23EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2254E62D25AFA980002B23EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2254E62F25AFA980002B23EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2254E65225AFAF8C002B23EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		226DFCF625AFD92C0064A527 /* MyCheckInsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCheckInsCollectionViewCell.swift; sourceTree = "<group>"; };
 		226DFCF725AFD92C0064A527 /* MyCheckInsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCheckInsCollectionViewCell.xib; sourceTree = "<group>"; };
 		22A4140725B11E7100371166 /* CheckIn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CheckIn.entitlements; sourceTree = "<group>"; };
 		22BE66B825B1A69E003BB790 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		22BE66BB25B1AF19003BB790 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		22BE66BE25B1B57B003BB790 /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
 		22BE66C925B1C658003BB790 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		22D2176C25B3A75900362856 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22F688B125B05159004CC4C2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		22F688B425B051A9004CC4C2 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		22F688B725B051D7004CC4C2 /* SetupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupProfileViewController.swift; sourceTree = "<group>"; };
@@ -109,8 +107,8 @@
 				2254E62725AFA97F002B23EE /* Main.storyboard */,
 				2254E62A25AFA980002B23EE /* Assets.xcassets */,
 				2254E62C25AFA980002B23EE /* LaunchScreen.storyboard */,
+				22D2176C25B3A75900362856 /* GoogleService-Info.plist */,
 				2254E62F25AFA980002B23EE /* Info.plist */,
-				2254E65225AFAF8C002B23EE /* GoogleService-Info.plist */,
 				22F688B125B05159004CC4C2 /* HomeViewController.swift */,
 				22F688B425B051A9004CC4C2 /* WelcomeViewController.swift */,
 				22F688B725B051D7004CC4C2 /* SetupProfileViewController.swift */,
@@ -125,7 +123,6 @@
 			children = (
 				226DFCF625AFD92C0064A527 /* MyCheckInsCollectionViewCell.swift */,
 				226DFCF725AFD92C0064A527 /* MyCheckInsCollectionViewCell.xib */,
-				22BE66BE25B1B57B003BB790 /* LoadingCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -243,8 +240,8 @@
 			files = (
 				226DFCF925AFD92C0064A527 /* MyCheckInsCollectionViewCell.xib in Resources */,
 				2254E62E25AFA980002B23EE /* LaunchScreen.storyboard in Resources */,
+				22D2176D25B3A75A00362856 /* GoogleService-Info.plist in Resources */,
 				2254E62B25AFA980002B23EE /* Assets.xcassets in Resources */,
-				2254E65325AFAF8C002B23EE /* GoogleService-Info.plist in Resources */,
 				2254E62925AFA97F002B23EE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,7 +328,6 @@
 				2254E62425AFA97F002B23EE /* SceneDelegate.swift in Sources */,
 				22F688C425B08EF1004CC4C2 /* UIColor.swift in Sources */,
 				22F688C825B08F31004CC4C2 /* User.swift in Sources */,
-				22BE66BF25B1B57B003BB790 /* LoadingCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

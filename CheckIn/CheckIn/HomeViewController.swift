@@ -14,39 +14,27 @@ import SVProgressHUD
 import CoreLocation
 import MapKit
 
-enum CollectionData: Equatable {
-    case feedItems([Feed])
-    case loading
-    static func == (lhs: CollectionData, rhs: CollectionData) -> Bool {
-        switch (lhs, rhs) {
-        case (.feedItems(_), .feedItems(_)):
-            return true
-        case (.loading, .loading):
-            return true
-        default:
-            return false
-        }
-    }
-}
 
-class HomeViewController: UIViewController {
+
+class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var noCheckIns: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var onPost: UIButton!
+    @IBOutlet weak var mapView: MKMapView!
     
     var refreshControl = UIRefreshControl()
+   
+    let manager = CLLocationManager()
+    var pickedImage: UIImage?
     var feedItems = [Feed]()
-    private var collectionData: [CollectionData] = [.feedItems([])]
-    private var pageSize = 5
-    private var lastFeedDocument: DocumentSnapshot?
-    var cities = [City]()
-    var filteredCities = [City]()
+    var moment = Feed()
     var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        manager.requestWhenInUseAuthorization()
+        manager.desiredAccuracy = kCLLocationAccuracyBest
         setTitle()
         setLogOutButton()
         customizeButton(onPost: onPost)
@@ -54,7 +42,47 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func onPost(_ sender: UIButton) {
-        performSegue(withIdentifier: "LocationViewController", sender: nil)
+        print("nesto")
+        manager.requestWhenInUseAuthorization()
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.startUpdatingLocation()
+        mapView.showsUserLocation = true
+        
+        guard var localUser = DataStore.shared.localUser else {
+            return
+        }
+        guard let pickedImage = pickedImage else {
+            return
+        }
+
+        SVProgressHUD.show()
+        let uuid = UUID().uuidString
+        DataStore.shared.uploadImage(image: pickedImage, itemId: uuid, isUserImage: false) { (url, error) in
+            if let error = error {
+                SVProgressHUD.dismiss()
+                print(error.localizedDescription)
+                self.showErrorWith(title: "Error", msg: error.localizedDescription)
+                return
+            }
+            if let url = url {
+                self.moment.imageUrl = url.absoluteString
+                DataStore.shared.createFeedItem(item: self.moment) { (feed, error) in
+                    if let error = error {
+                        self.showErrorWith(title: "Error", msg: error.localizedDescription)
+                        return
+                    }
+                }
+                return
+            }
+            SVProgressHUD.dismiss()
+        }
+        localUser.save { (_, _) in
+            localUser.name = self.moment.creatorId
+            self.moment.createdAt = Date().toMiliseconds()
+        }
+        self.feedItems.append(moment)
+
     }
     func setTitle() {
         title = "Home Screen"
@@ -79,7 +107,6 @@ class HomeViewController: UIViewController {
         }
     
     func setupCollectionView() {
-        collectionView.register(LoadingCollectionViewCell.self, forCellWithReuseIdentifier: "LoadingCollectionViewCell")
         collectionView.register(UINib(nibName: "MyCheckInsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyCheckInsCollectionViewCell")
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -106,10 +133,9 @@ class HomeViewController: UIViewController {
     private func fetchFeedItems(isRefresh: Bool = false) {
         SVProgressHUD.show()
         if isRefresh {
-            lastFeedDocument = nil
             feedItems.removeAll()
         }
-        DataStore.shared.fetchFeedItems(pageSize: pageSize, lastDocument: lastFeedDocument) { (feeds, error, lastDocument)  in
+        DataStore.shared.fetchFeedItems { (feed, error) in
             SVProgressHUD.dismiss()
             if self.refreshControl.isRefreshing {
                 self.refreshControl.endRefreshing()
@@ -118,17 +144,13 @@ class HomeViewController: UIViewController {
                 self.showErrorWith(title: "Error", msg: error.localizedDescription)
                 return
             }
-            self.lastFeedDocument = lastDocument
-            self.collectionData.removeAll()
-            if let feeds = feeds {
-                self.collectionData.append(.feedItems(self.feedItems))
+            self.feedItems.removeAll()
+            if let feed = feed {
+                self.feedItems = feed
                 if self.feedItems.count == 0 {
                     self.noCheckIns.isHidden = false
                 } else {
                     self.noCheckIns.isHidden = true
-                }
-                if feeds.count == self.pageSize {
-                    self.collectionData.append(.loading)
                 }
                 self.sortAndReload()
             }
@@ -143,58 +165,20 @@ class HomeViewController: UIViewController {
         }
         collectionView.reloadData()
     }
-    
 }
-extension HomeViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if cell is LoadingCollectionViewCell {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-              self.fetchFeedItems()
-          }
-        }
-    }
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return collectionData.count
-    }
+
+extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            let data = collectionData[section]
-            switch data {
-            case .loading:
-                return 1
-            case .feedItems(let feedItems):
-                return feedItems.count
-            }
+        return feedItems.count
         }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let data = collectionData[indexPath.section]
-        switch data {
-        case .feedItems(let items):
+       
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCheckInsCollectionViewCell", for: indexPath) as! MyCheckInsCollectionViewCell
-            let feed = items[indexPath.row]
-            cell.setupCell(feedItem: feed)
+            let feed = feedItems[indexPath.row]
+        guard let user = DataStore.shared.localUser else { return cell }
+        cell.setupCell(feedItem: feed, user: user)
             return cell
-            
-        case .loading:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LoadingCollectionViewCell", for: indexPath) as! LoadingCollectionViewCell
-            cell.activityIndicator.startAnimating()
-            cell.activityIndicator.isHidden = false
-            return cell
-        }
-    }
-}
-
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let data = collectionData[indexPath.section]
-        switch data {
-        case .loading:
-            return CGSize(width: collectionView.frame.width, height: 343)
-        default:
-            return CGSize(width: collectionView.frame.width, height: 343)
-        }
     }
 }

@@ -26,15 +26,15 @@ class MyCheckInsCollectionViewCell: UICollectionViewCell {
         userPhoto.layer.masksToBounds = true
     }
     
-    func setupCell(feedItem: Feed) {
+    func setupCell(feedItem: Feed, user: User) {
         self.feedItem = feedItem
         image.kf.setImage(with: URL(string: feedItem.imageUrl!))
         setDate(feedItem: feedItem)
-        fetchCreatorDetails(feedItem: feedItem)
+        fetchCreatorDetails(feedItem: feedItem, user: user)
     }
     
-    func fetchCreatorDetails(feedItem: Feed) {
-        guard let creatorId = feedItem.creatorId else { return }
+    func fetchCreatorDetails(feedItem: Feed, user: User) {
+        guard let creatorId = user.id else { return }
         DataStore.shared.getUser(uid: creatorId) { (user, error) in
             if let user = user {
                 self.userName.text = user.name
@@ -43,6 +43,8 @@ class MyCheckInsCollectionViewCell: UICollectionViewCell {
                 } else {
                     self.userPhoto.image = UIImage(named: "user")
                 }
+                self.time.text = user.createdAt
+                self.country.text = feedItem.location
             }
         }
     }
