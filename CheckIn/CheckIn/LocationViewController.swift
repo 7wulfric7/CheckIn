@@ -62,28 +62,32 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.startUpdatingLocation()
         mapView.showsUserLocation = true
+        
+    }
+    
+    func uploadImage() {
         mapImage.image = pickedImage
         guard let localUser = DataStore.shared.localUser else {
             return
         }
         guard let pickedImage = pickedImage else {
-//            showErrorWith(title: "Error", msg: "Image not found")
+            showErrorWith(title: "Error", msg: "Image not found")
             return
         }
-//        guard let location = location.text else {
-//            showErrorWith(title: "Error", msg: "No location description")
-//            return
-//        }
+        guard let location = location.text else {
+            showErrorWith(title: "Error", msg: "No location description")
+            return
+        }
         
-//        moment.location = location
-//        moment.creatorId = localUser.id
-//        moment.createdAt = Date().toMiliseconds()
+        moment.location = location
+        moment.creatorId = localUser.id
+        moment.createdAt = Date().toMiliseconds()
         SVProgressHUD.show()
         let uuid = UUID().uuidString
 //        guard let feedId = moment.id else { return }
         DataStore.shared.uploadImage(image: pickedImage, itemId: uuid, isUserImage: false) { (url, error) in
+            SVProgressHUD.dismiss()
             if let error = error {
-                SVProgressHUD.dismiss()
                 print(error.localizedDescription)
                 self.showErrorWith(title: "Error", msg: error.localizedDescription)
                 return
@@ -95,30 +99,26 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
                         self.showErrorWith(title: "Error", msg: error.localizedDescription)
                         return
                     }
+                    self.delegate?.didPostItem(item: self.moment)
                 }
                 return
             }
-            SVProgressHUD.dismiss()
         }
-        self.feedItems.append(moment)
-        self.continueToHome()
-//        performSegue(withIdentifier: "Home", sender: nil)
-    }
-    
-    func continueToHome() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "Home")
-        present(controller, animated: true, completion: nil)
-        navigationController?.popToRootViewController(animated: false)
+        
+
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location:CLLocation = locations[0] as CLLocation
             manager.stopUpdatingLocation()
         let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let span = MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
         let region = MKCoordinateRegion(center: coordinate, span: span)
+        
+        mapView.centerCoordinate = location.coordinate
+        mapView.setCenter(location.coordinate, animated: false)
         mapView.setRegion(region, animated: false)
+        mapView.mapType = .standard
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
             if (error != nil){
@@ -130,16 +130,17 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
                 self.location.text = "\(placemark.name!), \(placemark.administrativeArea!), \(placemark.country!)"
             }
         }
-//        let pin = MKPointAnnotation()
-//        pin.coordinate = coordinate
-//        mapView.addAnnotation(pin)
+        let pin = MKPointAnnotation()
+        pin.coordinate = coordinate
+        mapView.addAnnotation(pin)
         
         
         let options = MKMapSnapshotter.Options()
         options.region = mapView.region
-        options.size = mapView.frame.size
+        options.size = CGSize(width: 200.0, height: 200.0)
         options.scale = UIScreen.main.scale
-        let rect = mapImage.bounds
+        
+        let rect = mapView.bounds
         let snapshotter = MKMapSnapshotter(options: options)
         snapshotter.start { snapshot, error in
             guard let snapshot = snapshot else {
@@ -148,7 +149,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
             }
             let image = UIGraphicsImageRenderer(size: options.size).image { _ in
                 snapshot.image.draw(at: .zero)
-                let pinView = MKPinAnnotationView(annotation: nil, reuseIdentifier: nil)
+                let pinView = MKPinAnnotationView(annotation: pin, reuseIdentifier: nil)
                 let pinImage = pinView.image
                 var point = snapshot.point(for: location.coordinate)
                 if rect.contains(point) {
@@ -160,6 +161,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
                 }
             }
             self.pickedImage = image
+            self.uploadImage()
         }
     }
 }

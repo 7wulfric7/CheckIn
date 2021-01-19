@@ -16,12 +16,13 @@ import MapKit
 
 
 
-class HomeViewController: UIViewController, CLLocationManagerDelegate {
+class HomeViewController: UIViewController, CLLocationManagerDelegate, LocationDelegate {
     
     @IBOutlet weak var noCheckIns: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var onPost: UIButton!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapImage: UIImageView!
     
     var refreshControl = UIRefreshControl()
    
@@ -33,56 +34,28 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupCollectionView()
         manager.requestWhenInUseAuthorization()
         manager.desiredAccuracy = kCLLocationAccuracyBest
         setTitle()
         setLogOutButton()
         customizeButton(onPost: onPost)
         NotificationCenter.default.addObserver(self, selector: #selector(refresh(_:)), name: Notification.Name("ReloadFeedAfterUserAction"), object: nil)
+        fetchFeedItems()
     }
     
     @IBAction func onPost(_ sender: UIButton) {
-        print("nesto")
-        manager.requestWhenInUseAuthorization()
-        manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.startUpdatingLocation()
-        mapView.showsUserLocation = true
-        
-        guard var localUser = DataStore.shared.localUser else {
-            return
-        }
-        guard let pickedImage = pickedImage else {
-            return
-        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "LocationViewController") as! LocationViewController
+        controller.delegate = self
+        navigationController?.pushViewController(controller, animated: true)
 
-        SVProgressHUD.show()
-        let uuid = UUID().uuidString
-        DataStore.shared.uploadImage(image: pickedImage, itemId: uuid, isUserImage: false) { (url, error) in
-            if let error = error {
-                SVProgressHUD.dismiss()
-                print(error.localizedDescription)
-                self.showErrorWith(title: "Error", msg: error.localizedDescription)
-                return
-            }
-            if let url = url {
-                self.moment.imageUrl = url.absoluteString
-                DataStore.shared.createFeedItem(item: self.moment) { (feed, error) in
-                    if let error = error {
-                        self.showErrorWith(title: "Error", msg: error.localizedDescription)
-                        return
-                    }
-                }
-                return
-            }
-            SVProgressHUD.dismiss()
-        }
-        localUser.save { (_, _) in
-            localUser.name = self.moment.creatorId
-            self.moment.createdAt = Date().toMiliseconds()
-        }
-        self.feedItems.append(moment)
-
+    }
+    func didPostItem(item: Feed) {
+        navigationController?.popViewController(animated: true)
+        self.feedItems.append(item)
+        sortAndReload()
     }
     func setTitle() {
         title = "Home Screen"
@@ -114,6 +87,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             layout.itemSize = CGSize(width: collectionView.frame.width, height: 343)
             layout.estimatedItemSize = CGSize(width: collectionView.frame.width, height: 343)
         }
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        collectionView.refreshControl = self.refreshControl
     }
     @objc func onLogOut() {
         GIDSignIn.sharedInstance()?.signOut()

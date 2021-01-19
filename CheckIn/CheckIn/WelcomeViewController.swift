@@ -31,7 +31,14 @@ class WelcomeViewController: UIViewController, ASAuthorizationControllerDelegate
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance()?.restorePreviousSignIn()
         if Auth.auth().currentUser != nil {
-            self.performSegue(withIdentifier: "Home", sender: nil)
+            DataStore.shared.getUser(uid: Auth.auth().currentUser!.uid) { (user, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                DataStore.shared.localUser = user
+                self.performSegue(withIdentifier: "Home", sender: nil)
+            }
         } else if GIDSignIn.sharedInstance()?.currentUser != nil {
             GIDSignIn.sharedInstance().signIn()
             self.performSegue(withIdentifier: "Home", sender: nil)

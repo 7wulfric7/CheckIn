@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>797774525199-a046a0u8g5f50mo6fnb62tcc1grrhk2o.apps.googleusercontent.com</string>
+	<string>60254619485-qmomifmprfnkt4dtk46h2vcdmctacj4m.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.797774525199-a046a0u8g5f50mo6fnb62tcc1grrhk2o</string>
+	<string>com.googleusercontent.apps.60254619485-qmomifmprfnkt4dtk46h2vcdmctacj4m</string>
 	<key>API_KEY</key>
-	<string>AIzaSyACvSHM01ltOreO0SSn2a5ey4qRhkgp7xQ</string>
+	<string>AIzaSyBIWaiAadVnw1dMoOW0WSs8VtlkNgrLWU4</string>
 	<key>GCM_SENDER_ID</key>
-	<string>797774525199</string>
+	<string>60254619485</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.codeacademy.class</string>
+	<string>com.denizadil.CheckIn</string>
 	<key>PROJECT_ID</key>
-	<string>stringtheory-6a3ed</string>
+	<string>checkin-bd402</string>
 	<key>STORAGE_BUCKET</key>
-	<string>stringtheory-6a3ed.appspot.com</string>
+	<string>checkin-bd402.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:797774525199:ios:c9f41cd052b5199726847a</string>
+	<string>1:60254619485:ios:677e3fe0d0b72863a74ab4</string>
+	<key>DATABASE_URL</key>
+	<string>https://checkin-bd402-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>
 </plist>
