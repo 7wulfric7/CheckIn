@@ -85,7 +85,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, LocationD
         collectionView.delegate = self
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.itemSize = CGSize(width: collectionView.frame.width, height: 343)
-            layout.estimatedItemSize = CGSize(width: collectionView.frame.width, height: 343)
+            layout.estimatedItemSize = CGSize(width: collectionView.frame.width, height: 260)
         }
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         collectionView.refreshControl = self.refreshControl

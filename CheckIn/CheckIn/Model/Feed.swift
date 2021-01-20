@@ -14,4 +14,6 @@ struct Feed: Codable {
     var creatorId: String?
     var createdAt: TimeInterval?
     var location: String?
+    var latitude: String?
+    var longitude: String?
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import CoreLocation
 
 class MyCheckInsCollectionViewCell: UICollectionViewCell {
 
@@ -15,13 +16,15 @@ class MyCheckInsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var country: UILabel!
-    @IBOutlet weak var city: UILabel!
-    @IBOutlet weak var coordinates: UILabel!
+    @IBOutlet weak var latitude: UILabel!
+    @IBOutlet weak var longitude: UILabel!
+    
     
     var feedItem: Feed?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         userPhoto.layer.cornerRadius = 20
         userPhoto.layer.masksToBounds = true
     }
@@ -43,8 +46,10 @@ class MyCheckInsCollectionViewCell: UICollectionViewCell {
                 } else {
                     self.userPhoto.image = UIImage(named: "user")
                 }
-                self.time.text = user.createdAt
+//                self.time.text = "\(feedItem.createdAt ?? 0.0)"
                 self.country.text = feedItem.location
+                self.latitude.text = "latt: \(feedItem.latitude ?? "0.0")"
+                self.longitude.text = "long: \(feedItem.longitude ?? "0.0")"
             }
         }
     }
