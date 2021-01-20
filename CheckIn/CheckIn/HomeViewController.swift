@@ -143,13 +143,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, LocationD
 }
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return feedItems.count
         }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCheckInsCollectionViewCell", for: indexPath) as! MyCheckInsCollectionViewCell
             let feed = feedItems[indexPath.row]
         guard let user = DataStore.shared.localUser else { return cell }
