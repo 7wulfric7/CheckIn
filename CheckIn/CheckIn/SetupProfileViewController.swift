@@ -93,6 +93,7 @@ class SetupProfileViewController: UIViewController, UIImagePickerControllerDeleg
         scrollView.contentInset = UIEdgeInsets.zero
         scrollView.scrollIndicatorInsets = .zero
     }
+    
     func setBackButton() {
         let back = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         back.setImage(UIImage(named: "BackButton"), for: .normal)
@@ -302,7 +303,8 @@ class SetupProfileViewController: UIViewController, UIImagePickerControllerDeleg
 
 extension SetupProfileViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+//        textField.resignFirstResponder()
+        self.view.endEditing(true)
         return true
     }
 }

@@ -8,6 +8,8 @@
 import UIKit
 import Kingfisher
 import CoreLocation
+import Firebase
+import GoogleSignIn
 
 class MyCheckInsCollectionViewCell: UICollectionViewCell {
 
@@ -33,11 +35,13 @@ class MyCheckInsCollectionViewCell: UICollectionViewCell {
         self.feedItem = feedItem
         image.kf.setImage(with: URL(string: feedItem.imageUrl!))
         setDate(feedItem: feedItem)
-        fetchCreatorDetails(feedItem: feedItem, user: user)
+        fetchCreatorDetails(feedItem: feedItem)
     }
     
-    func fetchCreatorDetails(feedItem: Feed, user: User) {
-        guard let creatorId = user.id else { return }
+    func fetchCreatorDetails(feedItem: Feed) {
+//        currentFacebookUser()
+//        currentGoogleUser()
+        guard let creatorId = feedItem.creatorId else { return }
         DataStore.shared.getUser(uid: creatorId) { (user, error) in
             if let user = user {
                 self.userName.text = user.name
@@ -58,4 +62,25 @@ class MyCheckInsCollectionViewCell: UICollectionViewCell {
         let date = Date(with: feedItem.createdAt!)
         time.text = date?.timeAgoDisplay()
     }
+    
+//    func currentFacebookUser() {
+//        if let currentUser = Auth.auth().currentUser {
+//            userName.text = currentUser.displayName
+//            guard let photo = currentUser.photoURL, let data = NSData(contentsOf: photo) else { return }
+//            userPhoto.image = UIImage(data: data as Data)
+//        }
+//    }
+//    
+//    func currentGoogleUser() {
+//        if let currentUser: GIDGoogleUser = GIDSignIn.sharedInstance()?.currentUser {
+//            userName.text = currentUser.profile.name
+//            if currentUser.profile.hasImage {
+//               guard let photo = currentUser.profile.imageURL(withDimension: 200), let data = NSData(contentsOf: photo) else { return }
+//                self.userPhoto.image = UIImage(data: data as Data)
+//            }
+//        }
+//    }
+    
 }
+
+
