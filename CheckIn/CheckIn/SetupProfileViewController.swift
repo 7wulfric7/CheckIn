@@ -303,8 +303,7 @@ class SetupProfileViewController: UIViewController, UIImagePickerControllerDeleg
 
 extension SetupProfileViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-        self.view.endEditing(true)
+        textField.resignFirstResponder()
         return true
     }
 }
