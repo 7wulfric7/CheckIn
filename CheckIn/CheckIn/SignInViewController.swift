@@ -23,13 +23,17 @@ class SignInViewController: UIViewController {
         
         setTitle()
         setBackButton()
-        setBorders()
+        setBordersAndDelegates()
         
     }
     
-    func setBorders() {
+    func setBordersAndDelegates() {
         onSignIn.layer.masksToBounds = true
         onSignIn.layer.cornerRadius = 6
+        emailTextField.delegate = self
+        emailTextField.returnKeyType = .continue
+        passwordTextField.delegate = self
+        passwordTextField.returnKeyType = .done
     }
     
     func setBackButton() {
@@ -104,5 +108,11 @@ class SignInViewController: UIViewController {
             }
         }
     }
+}
 
+extension SignInViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

@@ -52,7 +52,7 @@ class MyCheckInsCollectionViewCell: UICollectionViewCell {
                 }
 //                self.time.text = "\(feedItem.createdAt ?? 0.0)"
                 self.country.text = feedItem.location
-                self.latitude.text = "latt: \(feedItem.latitude ?? "0.0")"
+                self.latitude.text = "lat: \(feedItem.latitude ?? "0.0")"
                 self.longitude.text = "long: \(feedItem.longitude ?? "0.0")"
             }
         }

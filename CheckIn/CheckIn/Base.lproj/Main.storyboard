@@ -515,6 +515,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="emailAddress" textContentType="email"/>
+                                <connections>
+                                    <outlet property="delegate" destination="x5u-lI-3k7" id="iCS-p6-WDg"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pab-aL-HOQ">
                                 <rect key="frame" x="40" y="268" width="334" height="40"/>
@@ -523,6 +526,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES" textContentType="password"/>
+                                <connections>
+                                    <outlet property="delegate" destination="x5u-lI-3k7" id="39H-BE-ZO0"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eje-K8-V0A">
                                 <rect key="frame" x="40" y="388" width="334" height="40"/>
@@ -603,6 +609,9 @@
                                                 <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <textInputTraits key="textInputTraits" spellCheckingType="no" textContentType="name"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="OcM-69-qhW" id="Qn3-wD-pBl"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBr-VE-MV6">
                                                 <rect key="frame" x="42" y="140" width="100" height="20"/>
@@ -632,6 +641,9 @@
                                                 <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="emailAddress" textContentType="email"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="OcM-69-qhW" id="Hkf-u8-G5J"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQH-0H-2kp">
                                                 <rect key="frame" x="42" y="310" width="100" height="20"/>
@@ -822,7 +834,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="c4m-Cc-yqi"/>
-        <segue reference="2wg-fh-mkU"/>
+        <segue reference="ugQ-GD-HSK"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="check-in" width="256" height="256"/>

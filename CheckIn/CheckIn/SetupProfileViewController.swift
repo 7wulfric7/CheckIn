@@ -35,14 +35,23 @@ class SetupProfileViewController: UIViewController, UIImagePickerControllerDeleg
         navigationItem.hidesBackButton = true
         setTitle()
         setBackButton()
-        setBorders()
+        setBordersAndDelegates()
+        
         
     }
     
-    func setBorders() {
+    func setBordersAndDelegates() {
         imageHolderView.layer.cornerRadius = 35
         imageHolderView.layer.masksToBounds = true
         onSaveAccount.layer.cornerRadius = 6
+        fullNameTextField.delegate = self
+        fullNameTextField.returnKeyType = .continue
+        emailTextField.delegate = self
+        emailTextField.returnKeyType = .continue
+        passwordTextField.delegate = self
+        passwordTextField.returnKeyType = .continue
+        locationTextField.delegate = self
+        locationTextField.returnKeyType = .done
     }
     
     func setAddPhotoButton() {

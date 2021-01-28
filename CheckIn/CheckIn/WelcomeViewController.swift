@@ -11,11 +11,12 @@ import AuthenticationServices
 import GoogleSignIn
 import FBSDKCoreKit
 import FBSDKLoginKit
+import SVProgressHUD
 
 class WelcomeViewController: UIViewController, ASAuthorizationControllerDelegate {
-
+    
     @IBOutlet weak var onSignInWithFacebook: UIButton!
-    @IBOutlet weak var onSignInWithGoogle: GIDSignInButton!
+    @IBOutlet weak var onSignInWithGoogle: UIButton!
     @IBOutlet weak var onSignInWithEmail: UIButton!
     @IBOutlet weak var onCreateAccount: UIButton!
     @IBOutlet weak var googleHolderView: UIView!
@@ -25,11 +26,10 @@ class WelcomeViewController: UIViewController, ASAuthorizationControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         signInWithAppleButton()
         setBordersForButtons()
         GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+        
         if Auth.auth().currentUser != nil {
             DataStore.shared.getUser(uid: Auth.auth().currentUser!.uid) { (user, error) in
                 if let error = error {
@@ -39,11 +39,6 @@ class WelcomeViewController: UIViewController, ASAuthorizationControllerDelegate
                 DataStore.shared.localUser = user
                 self.performSegue(withIdentifier: "Home", sender: nil)
             }
-        } else if GIDSignIn.sharedInstance()?.currentUser != nil {
-            GIDSignIn.sharedInstance().signIn()
-            self.performSegue(withIdentifier: "Home", sender: nil)
-        } else {
-            return
         }
     }
     
@@ -57,11 +52,9 @@ class WelcomeViewController: UIViewController, ASAuthorizationControllerDelegate
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     func setBordersForButtons() {
-        
         facebookHolderView.layer.borderWidth = 1.0
         facebookHolderView.layer.borderColor = UIColor.gray.cgColor
         facebookHolderView.layer.cornerRadius = 6.0
-       
         googleHolderView.layer.borderWidth = 1.0
         googleHolderView.layer.borderColor = UIColor.gray.cgColor
         googleHolderView.layer.cornerRadius = 6.0
@@ -141,21 +134,34 @@ class WelcomeViewController: UIViewController, ASAuthorizationControllerDelegate
                     self.present(alertController, animated: true, completion: nil)
                     return
                 } else {
-                    if Auth.auth().currentUser != nil {
-                        self.performSegue(withIdentifier: "Home", sender: nil)
+                    guard let currentUser = user?.user else {return}
+                    var cUser = User(id: currentUser.uid)
+                    
+                        cUser.name = currentUser.displayName
+                        cUser.email = currentUser.email
+                        guard let photo = currentUser.photoURL?.absoluteString else {return}
+                        cUser.image = photo
+                    
+                    DataStore.shared.setUserData(user: cUser) { (success, error) in
+                        if let error = error {
+                            self.showErrorWith(title: nil, msg: error.localizedDescription)
+                            return
+                        }
+                        if success {
+                            DataStore.shared.localUser = cUser
+                            self.performSegue(withIdentifier: "Home", sender: nil)
+                        }
                     }
                 }
             }
         }
     }
     
-    @IBAction func onSignInWithGoogle(_ sender: GIDSignInButton) {
-        if GIDSignIn.sharedInstance()?.currentUser == nil {
-            GIDSignIn.sharedInstance().signIn()
-            self.performSegue(withIdentifier: "Home", sender: nil)
-        }
+    @IBAction func onSignInWithGoogle(_ sender: UIButton) {
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().signIn()
     }
-    
+
     @IBAction func onSignInWithEmail(_ sender: UIButton) {
         performSegue(withIdentifier: "SignInViewController", sender: nil)
     }
@@ -163,4 +169,44 @@ class WelcomeViewController: UIViewController, ASAuthorizationControllerDelegate
     @IBAction func onCreateAccount(_ sender: UIButton) {
         performSegue(withIdentifier: "SetupProfileViewController", sender: nil)
     }
+}
+
+extension WelcomeViewController: GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        let name = user?.profile.name
+        let email = user?.profile.email
+        print("User Name: \(name ?? "No User"), User Email: \(email ?? "No Email")")
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        Auth.auth().signIn(with: credential) { (user, error) in
+            if let error = error {
+                print("Error occurs when authenticate with Firebase: \(error.localizedDescription)")
+            } else {
+                guard let currentUser = user?.user else {return}
+                var cUser = User(id: currentUser.uid)
+                cUser.name = currentUser.displayName
+                cUser.email = currentUser.email
+                guard let photo = currentUser.photoURL?.absoluteString else {return}
+                cUser.image = photo
+                DataStore.shared.setUserData(user: cUser) { (success, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        return
+                    }
+                    if success {
+                        DataStore.shared.localUser = cUser
+                        self.performSegue(withIdentifier: "Home", sender: nil)
+                    }
+                }
+            }
+        }
+    }
+
+        func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+            print("User has disconnected")
+        }
 }

@@ -95,10 +95,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, LocationD
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            performSegue(withIdentifier: "WelcomeViewController", sender: nil)
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
-        performSegue(withIdentifier: "WelcomeViewController", sender: nil)
     }
     
     @objc func refresh(_ refreshControl: UIRefreshControl) {
