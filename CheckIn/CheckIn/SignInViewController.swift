@@ -90,7 +90,6 @@ class SignInViewController: UIViewController {
                 self.getLocalUserData(uid: authResult.user.uid)
             }
         }
-        
     }
     
     func getLocalUserData(uid: String) {

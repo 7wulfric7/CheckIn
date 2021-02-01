@@ -29,7 +29,6 @@ class WelcomeViewController: UIViewController, ASAuthorizationControllerDelegate
         signInWithAppleButton()
         setBordersForButtons()
         GIDSignIn.sharedInstance()?.presentingViewController = self
-        
         if Auth.auth().currentUser != nil {
             DataStore.shared.getUser(uid: Auth.auth().currentUser!.uid) { (user, error) in
                 if let error = error {
