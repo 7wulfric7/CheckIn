@@ -51,22 +51,17 @@ class WelcomeViewController: UIViewController, ASAuthorizationControllerDelegate
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     func setBordersForButtons() {
-        facebookHolderView.layer.borderWidth = 1.0
-        facebookHolderView.layer.borderColor = UIColor.gray.cgColor
-        facebookHolderView.layer.cornerRadius = 6.0
-        googleHolderView.layer.borderWidth = 1.0
-        googleHolderView.layer.borderColor = UIColor.gray.cgColor
-        googleHolderView.layer.cornerRadius = 6.0
-        signInWithEmailHolderView.layer.cornerRadius = 6.0
-        signInWithEmailHolderView.layer.borderWidth = 1.0
-        signInWithEmailHolderView.layer.borderColor = UIColor.gray.cgColor
+        facebookHolderView.layer.cornerRadius = 20.0
+        onSignInWithFacebook.layer.masksToBounds = true
+        googleHolderView.layer.cornerRadius = 20.0
+        onSignInWithGoogle.layer.masksToBounds = true
+        signInWithEmailHolderView.layer.cornerRadius = 20.0
+        onSignInWithEmail.layer.masksToBounds = true
     }
     
     func signInWithAppleButton() {
         let appleButton = ASAuthorizationAppleIDButton(type: .default, style: .black)
-        appleButton.layer.borderWidth = 1.0
-        appleButton.layer.cornerRadius = 6.0
-        appleButton.layer.borderColor = UIColor.gray.cgColor
+        appleButton.layer.cornerRadius = 20.0
         appleButton.layer.masksToBounds = true
         appleButton.addTarget(self, action: #selector(buttonRequest), for: .touchUpInside)
         appleButton.frame = CGRect(x: 0, y: 0, width: 255, height: 40)
@@ -135,12 +130,10 @@ class WelcomeViewController: UIViewController, ASAuthorizationControllerDelegate
                 } else {
                     guard let currentUser = user?.user else {return}
                     var cUser = User(id: currentUser.uid)
-                    
                         cUser.name = currentUser.displayName
                         cUser.email = currentUser.email
                         guard let photo = currentUser.photoURL?.absoluteString else {return}
                         cUser.image = photo
-                    
                     DataStore.shared.setUserData(user: cUser) { (success, error) in
                         if let error = error {
                             self.showErrorWith(title: nil, msg: error.localizedDescription)

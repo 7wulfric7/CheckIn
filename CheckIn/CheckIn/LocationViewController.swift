@@ -81,8 +81,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     func uploadImage() {
         mapImage.image = pickedImage
-        
-        
         guard let localUser = DataStore.shared.localUser else {
             return
         }
@@ -168,7 +166,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
                 return
             }
             let image = UIGraphicsImageRenderer(size: options.size).image { _ in
-                
                     snapshot.image.draw(at: .zero)
                     let pinView = MKPinAnnotationView(annotation: pin, reuseIdentifier: nil)
                     let pinImage = pinView.image
