@@ -46,7 +46,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     func setTitle() {
         title = "Your Location"
-        let titleAttributes = [NSAttributedString.Key.foregroundColor:UIColor.darkGray, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13, weight: .medium)]
+        let titleAttributes = [NSAttributedString.Key.foregroundColor:UIColor.darkGray, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 15, weight: .semibold)]
         navigationController?.navigationBar.titleTextAttributes = titleAttributes as [NSAttributedString.Key : Any]
     }
     
@@ -64,8 +64,8 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     func setCheckInButton() {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 14))
         button.setTitle("Check In", for: .normal)
-        let titleColor = UIColor.systemBlue
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .light)
+        let titleColor = UIColor.systemPink
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .light)
         button.setTitleColor(titleColor, for: .normal)
         button.addTarget(self, action: #selector(onCheckIn), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)

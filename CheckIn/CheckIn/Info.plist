@@ -8,8 +8,6 @@
 	<string>CheckIn needs user location for displaying check-ins</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Do you allow this app to know your current location?</string>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>It needs to use the photo library for setting the profile picture</string>
 	<key>NSCameraUsageDescription</key>

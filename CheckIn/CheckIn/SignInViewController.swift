@@ -30,8 +30,14 @@ class SignInViewController: UIViewController {
     func setBordersAndDelegates() {
         onSignIn.layer.masksToBounds = true
         onSignIn.layer.cornerRadius = 6
+        emailTextField.layer.borderWidth = 1
+        emailTextField.layer.cornerRadius = 6
+        emailTextField.layer.borderColor = UIColor.systemGray.cgColor
         emailTextField.delegate = self
         emailTextField.returnKeyType = .continue
+        passwordTextField.layer.borderWidth = 1
+        passwordTextField.layer.cornerRadius = 6
+        passwordTextField.layer.borderColor = UIColor.systemGray.cgColor
         passwordTextField.delegate = self
         passwordTextField.returnKeyType = .done
     }
@@ -49,7 +55,7 @@ class SignInViewController: UIViewController {
     
     func setTitle() {
         title = "Sign In"
-        let titleAttributes = [NSAttributedString.Key.foregroundColor:UIColor.darkGray, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13, weight: .medium)]
+        let titleAttributes = [NSAttributedString.Key.foregroundColor:UIColor.darkGray, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 15, weight: .semibold)]
         navigationController?.navigationBar.titleTextAttributes = titleAttributes as [NSAttributedString.Key : Any]
     }
     

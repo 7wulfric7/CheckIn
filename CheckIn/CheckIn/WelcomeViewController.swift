@@ -52,16 +52,24 @@ class WelcomeViewController: UIViewController, ASAuthorizationControllerDelegate
     }
     func setBordersForButtons() {
         facebookHolderView.layer.cornerRadius = 20.0
+        facebookHolderView.layer.borderColor = UIColor.white.cgColor
+        facebookHolderView.layer.borderWidth = 1.0
         onSignInWithFacebook.layer.masksToBounds = true
         googleHolderView.layer.cornerRadius = 20.0
+        googleHolderView.layer.borderColor = UIColor.white.cgColor
+        googleHolderView.layer.borderWidth = 1.0
         onSignInWithGoogle.layer.masksToBounds = true
         signInWithEmailHolderView.layer.cornerRadius = 20.0
+        signInWithEmailHolderView.layer.borderColor = UIColor.white.cgColor
+        signInWithEmailHolderView.layer.borderWidth = 1.0
         onSignInWithEmail.layer.masksToBounds = true
     }
     
     func signInWithAppleButton() {
         let appleButton = ASAuthorizationAppleIDButton(type: .default, style: .black)
         appleButton.layer.cornerRadius = 20.0
+        appleButton.layer.borderColor = UIColor.white.cgColor
+        appleButton.layer.borderWidth = 1.0
         appleButton.layer.masksToBounds = true
         appleButton.addTarget(self, action: #selector(buttonRequest), for: .touchUpInside)
         appleButton.frame = CGRect(x: 0, y: 0, width: 255, height: 40)

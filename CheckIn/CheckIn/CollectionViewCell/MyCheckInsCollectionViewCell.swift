@@ -33,7 +33,8 @@ class MyCheckInsCollectionViewCell: UICollectionViewCell {
     
     func setupCell(feedItem: Feed, user: User) {
         self.feedItem = feedItem
-        image.kf.setImage(with: URL(string: feedItem.imageUrl!))
+        guard let imageUrl = feedItem.imageUrl else { return }
+        image.kf.setImage(with: URL(string: imageUrl))
         setDate(feedItem: feedItem)
         fetchCreatorDetails(feedItem: feedItem)
     }

@@ -59,7 +59,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, LocationD
     }
     func setTitle() {
         title = "Home Screen"
-        let titleAttributes = [NSAttributedString.Key.foregroundColor:UIColor.darkGray, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13, weight: .medium)]
+        let titleAttributes = [NSAttributedString.Key.foregroundColor:UIColor.darkGray, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 15, weight: .semibold)]
         navigationController?.navigationBar.titleTextAttributes = titleAttributes as [NSAttributedString.Key : Any]
     }
     
@@ -72,7 +72,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, LocationD
     func setLogOutButton() {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 14))
         button.setTitle("LogOut", for: .normal)
-        let titleColor = UIColor.systemBlue
+        let titleColor = UIColor.systemPink
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .light)
         button.setTitleColor(titleColor, for: .normal)
         button.addTarget(self, action: #selector(onLogOut), for: .touchUpInside)

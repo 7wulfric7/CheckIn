@@ -24,6 +24,7 @@ class SetupProfileViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var onSaveAccount: UIButton!
     @IBOutlet weak var onUploadPhoto: UIButton!
     @IBOutlet weak var userPhoto: UIImageView!
+    @IBOutlet weak var addPhotoSign: UILabel!
     
     var user: User?
     private var pickedImage: UIImage?
@@ -36,12 +37,24 @@ class SetupProfileViewController: UIViewController, UIImagePickerControllerDeleg
         setTitle()
         setBackButton()
         setBordersAndDelegates()
-        
-        
     }
     
     func setBordersAndDelegates() {
+        locationTextField.layer.borderWidth = 1
+        locationTextField.layer.cornerRadius = 6
+        locationTextField.layer.borderColor = UIColor.systemGray.cgColor
+        passwordTextField.layer.borderWidth = 1
+        passwordTextField.layer.cornerRadius = 6
+        passwordTextField.layer.borderColor = UIColor.systemGray.cgColor
+        emailTextField.layer.borderWidth = 1
+        emailTextField.layer.cornerRadius = 6
+        emailTextField.layer.borderColor = UIColor.systemGray.cgColor
+        fullNameTextField.layer.borderWidth = 1
+        fullNameTextField.layer.cornerRadius = 6
+        fullNameTextField.layer.borderColor = UIColor.systemGray.cgColor
         imageHolderView.layer.cornerRadius = 35
+        imageHolderView.layer.borderWidth = 1
+        imageHolderView.layer.borderColor = UIColor.systemGray.cgColor
         imageHolderView.layer.masksToBounds = true
         onSaveAccount.layer.cornerRadius = 6
         fullNameTextField.delegate = self
@@ -52,20 +65,6 @@ class SetupProfileViewController: UIViewController, UIImagePickerControllerDeleg
         passwordTextField.returnKeyType = .continue
         locationTextField.delegate = self
         locationTextField.returnKeyType = .done
-    }
-    
-    func setAddPhotoButton() {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 14))
-        button.setTitle("Add photo", for: .normal)
-        let titleColor = UIColor.systemBlue
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .light)
-        button.setTitleColor(titleColor, for: .normal)
-        button.addTarget(self, action: #selector(onAddPhoto), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
-        }
-    
-    @objc func onAddPhoto() {
-        openImagePicker()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -116,13 +115,12 @@ class SetupProfileViewController: UIViewController, UIImagePickerControllerDeleg
     
     func setTitle() {
         title = "Setup your profile"
-        let titleAttributes = [NSAttributedString.Key.foregroundColor:UIColor.darkGray, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13, weight: .medium)]
+        let titleAttributes = [NSAttributedString.Key.foregroundColor:UIColor.darkGray, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 15, weight: .semibold)]
         navigationController?.navigationBar.titleTextAttributes = titleAttributes as [NSAttributedString.Key : Any]
     }
     
     @IBAction func onUploadPhoto(_ sender: UIButton) {
         openImagePicker()
-        setAddPhotoButton()
     }
     
     func createLocalUser() -> User? {
@@ -280,7 +278,7 @@ class SetupProfileViewController: UIViewController, UIImagePickerControllerDeleg
         actionSheet.addAction(camera)
         actionSheet.addAction(library)
         actionSheet.addAction(cancel)
-        onUploadPhoto.isHidden = true
+        addPhotoSign.isHidden = true
         present(actionSheet, animated: true, completion: nil)
     }
     
