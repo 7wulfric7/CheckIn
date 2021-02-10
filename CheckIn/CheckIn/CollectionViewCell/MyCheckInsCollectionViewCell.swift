@@ -27,7 +27,7 @@ class MyCheckInsCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        userPhoto.layer.cornerRadius = 20
+        userPhoto.layer.cornerRadius = 17.5
         userPhoto.layer.masksToBounds = true
     }
     

@@ -45,6 +45,7 @@ class SignInViewController: UIViewController {
     func setBackButton() {
         let back = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         back.setImage(UIImage(named: "BackButton"), for: .normal)
+        back.tintColor = UIColor(named: "Color")
         back.addTarget(self, action: #selector(onBack), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: back)
     }
@@ -55,7 +56,7 @@ class SignInViewController: UIViewController {
     
     func setTitle() {
         title = "Sign In"
-        let titleAttributes = [NSAttributedString.Key.foregroundColor:UIColor.darkGray, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 15, weight: .semibold)]
+        let titleAttributes = [NSAttributedString.Key.foregroundColor:UIColor(named: "Color"), NSAttributedString.Key.font:UIFont.systemFont(ofSize: 15, weight: .semibold)]
         navigationController?.navigationBar.titleTextAttributes = titleAttributes as [NSAttributedString.Key : Any]
     }
     

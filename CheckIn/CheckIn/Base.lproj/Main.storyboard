@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -514,7 +515,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="cZ8-0P-5MX"/>
                                 </constraints>
-                                <color key="textColor" systemColor="systemPinkColor"/>
+                                <color key="textColor" name="Color"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="emailAddress" textContentType="email"/>
                                 <connections>
@@ -527,7 +528,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Vne-SO-SgA"/>
                                 </constraints>
-                                <color key="textColor" systemColor="systemPinkColor"/>
+                                <color key="textColor" name="Color"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES" textContentType="password"/>
                                 <connections>
@@ -611,7 +612,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Okc-Qz-3ji"/>
                                                 </constraints>
-                                                <color key="textColor" systemColor="systemPinkColor"/>
+                                                <color key="textColor" name="Color"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <textInputTraits key="textInputTraits" spellCheckingType="no" textContentType="name"/>
                                                 <connections>
@@ -644,7 +645,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Deb-vI-KcL"/>
                                                 </constraints>
-                                                <color key="textColor" systemColor="systemPinkColor"/>
+                                                <color key="textColor" name="Color"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="emailAddress" textContentType="email"/>
                                                 <connections>
@@ -677,7 +678,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="jRf-Hb-cws"/>
                                                 </constraints>
-                                                <color key="textColor" systemColor="systemPinkColor"/>
+                                                <color key="textColor" name="Color"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES" textContentType="password"/>
                                             </textField>
@@ -717,7 +718,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="6Ah-9P-0rP"/>
                                                 </constraints>
-                                                <color key="textColor" systemColor="systemPinkColor"/>
+                                                <color key="textColor" name="Color"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <textInputTraits key="textInputTraits" textContentType="location"/>
                                             </textField>
@@ -854,7 +855,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="c4m-Cc-yqi"/>
-        <segue reference="ugQ-GD-HSK"/>
+        <segue reference="2wg-fh-mkU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="check-in" width="256" height="256"/>
@@ -864,6 +865,9 @@
         <image name="homekit" catalog="system" width="128" height="106"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="user" width="256" height="256"/>
+        <namedColor name="Color">
+            <color red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

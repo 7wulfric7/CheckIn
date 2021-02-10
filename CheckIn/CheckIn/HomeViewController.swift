@@ -59,7 +59,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, LocationD
     }
     func setTitle() {
         title = "Home Screen"
-        let titleAttributes = [NSAttributedString.Key.foregroundColor:UIColor.darkGray, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 15, weight: .semibold)]
+        let titleAttributes = [NSAttributedString.Key.foregroundColor:UIColor(named: "Color"), NSAttributedString.Key.font:UIFont.systemFont(ofSize: 15, weight: .semibold)]
         navigationController?.navigationBar.titleTextAttributes = titleAttributes as [NSAttributedString.Key : Any]
     }
     
