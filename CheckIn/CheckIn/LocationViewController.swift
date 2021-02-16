@@ -79,7 +79,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         mapView.showsUserLocation = true
         manager.delegate = self
     }
-    
     func uploadImage() {
         mapImage.image = pickedImage
         guard let localUser = DataStore.shared.localUser else {
@@ -94,11 +93,11 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
             return
         }
         guard let latitude = latitude.text else {
-            showErrorWith(title: "Error", msg: "No location description")
+            showErrorWith(title: "Error", msg: "No latitude to be displayed")
             return
         }
         guard let longitude = longitude.text else {
-            showErrorWith(title: "Error", msg: "No location description")
+            showErrorWith(title: "Error", msg: "No longitude to be displayed")
             return
         }
         moment.location = location

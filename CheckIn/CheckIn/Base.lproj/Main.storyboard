@@ -588,11 +588,11 @@
             <objects>
                 <viewController id="OcM-69-qhW" customClass="SetupProfileViewController" customModule="CheckIn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NZs-dN-NK5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ROn-fi-VcC">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="34V-pQ-Shz">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -855,7 +855,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="c4m-Cc-yqi"/>
-        <segue reference="2wg-fh-mkU"/>
+        <segue reference="VHf-w4-yQm"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="check-in" width="256" height="256"/>
